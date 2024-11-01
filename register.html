@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .register-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .register-container input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .register-container button {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Регистрация</h2>
+        <input type="text" id="reg-username" placeholder="Введите логин">
+        <input type="password" id="reg-password" placeholder="Введите пароль">
+        <input type="password" id="reg-confirm-password" placeholder="Повторите пароль">
+        <button onclick="register()">Зарегистрироваться</button>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+            if (username && password && confirmPassword) {
+                if (password === confirmPassword) {
+                    localStorage.setItem(`${username}_username`, username);
+                    localStorage.setItem(`${username}_password`, password);
+                    alert('Регистрация прошла успешно!');
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Пароли не совпадают');
+                }
+            } else {
+                alert('Пожалуйста, заполните все поля');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .login-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .login-container input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .login-container button {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Авторизация</h2>
+        <input type="text" id="username" placeholder="Введите логин">
+        <input type="password" id="password" placeholder="Введите пароль">
+        <button onclick="login()">Войти</button>
+        <p><a href="register.html">Регистрация</a></p>
+        <!-- Ссылка на регистрацию -->
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const storedPassword = localStorage.getItem(`${username}_password`);
+
+            if (storedPassword && password === storedPassword) {
+                localStorage.setItem('authenticated', 'true');
+                localStorage.setItem('currentUser', username);
+                window.location.href = 'kabinet.html';
+            } else {
+                alert('Неверный логин или пароль');
+            }
+        }
+    </script>
+</body>
+
+</html>

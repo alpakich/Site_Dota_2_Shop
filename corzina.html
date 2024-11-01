@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        .cart-container {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .cart-item img {
+            width: 50px;
+            height: auto;
+        }
+        
+        .cart-item h3,
+        .cart-item p {
+            margin: 0 10px;
+        }
+        
+        .btn-remove {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+        }
+        
+        .total {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .btn-checkout {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .notification {
+            display: none;
+            background-color: #28a745;
+            color: #FFFFFF;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Корзина</h1>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="corzina.html">Корзина</a>
+        <a href="kabinet.html">Личный кабинет</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="notification" id="notification">
+        Товар успешно добавлен в корзину!
+    </div>
+    <div class="cart-container" id="cart-container">
+        <!-- Товары будут добавлены здесь через JavaScript -->
+    </div>
+    <div class="total" id="total">
+        <p>Итого: 0 руб.</p>
+    </div>
+    <button class="btn-checkout">Оформить заказ</button>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-container');
+            const totalElement = document.getElementById('total');
+            cartContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>Цена: ${item.price} руб.</p>
+                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                    <button class="btn-remove" onclick="removeItem(${index})">Удалить</button>
+                `;
+                cartContainer.appendChild(cartItem);
+                total += item.price * item.quantity;
+            });
+
+            totalElement.innerHTML = `<p>Итого: ${total} руб.</p>`;
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateQuantity(index, quantity) {
+            cart[index].quantity = parseInt(quantity);
+            updateCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        updateCart();
+
+        // Получаем уведомление из localStorage
+        const notification = localStorage.getItem('notification');
+        if (notification) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.style.display = 'block';
+            setTimeout(() => {
+                notificationElement.style.display = 'none';
+                localStorage.removeItem('notification');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

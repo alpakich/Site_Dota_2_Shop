@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .section {
+            background-color: #333;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+        }
+        
+        .section input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .section button {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Личный кабинет</h1>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="corzina.html">Корзина</a>
+        <a href="kabinet.html">Личный кабинет</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="container">
+        <div class="section">
+            <h2>Профиль пользователя</h2>
+            <input type="text" id="name" placeholder="Имя">
+            <input type="text" id="trade-link" placeholder="Трейд ссылка">
+            <button onclick="saveProfile()">Сохранить</button>
+        </div>
+        <div class="section">
+            <h2>История заказов</h2>
+            <p>Заказ №1: Dota 2 Pudge - 5000 руб. - Доставлен</p>
+            <p>Заказ №2: Dota 2 Sniper - 3000 руб. - В обработке</п>
+                <!-- Добавить список заказов -->
+        </div>
+        <div class="section">
+            <h2>Настройки учетной записи</h2>
+            <input type="password" id="current-password" placeholder="Текущий пароль">
+            <input type="password" id="new-password" placeholder="Новый пароль">
+            <input type="password" id="confirm-new-password" placeholder="Повторите новый пароль">
+            <button onclick="changePassword()">Изменить пароль</button>
+        </div>
+        <div class="section">
+            <button onclick="logout()">Выйти</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const name = localStorage.getItem(`${currentUser}_profileName`) || '';
+            const tradeLink = localStorage.getItem(`${currentUser}_tradeLink`) || '';
+            document.getElementById('name').value = name;
+            document.getElementById('trade-link').value = tradeLink;
+        });
+
+        function saveProfile() {
+            const currentUser = localStorage.getItem('currentUser');
+            const name = document.getElementById('name').value;
+            const tradeLink = document.getElementById('trade-link').value;
+
+            if (name && tradeLink) {
+                localStorage.setItem(`${currentUser}_profileName`, name);
+                localStorage.setItem(`${currentUser}_tradeLink`, tradeLink);
+                alert('Профиль сохранен!');
+            } else {
+                alert('Пожалуйста, заполните все поля');
+            }
+        }
+
+        function changePassword() {
+            const currentUser = localStorage.getItem('currentUser');
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
+            const storedPassword = localStorage.getItem('password');
+
+            if (currentPassword === storedPassword) {
+                if (newPassword && confirmNewPassword) {
+                    if (newPassword === confirmNewPassword) {
+                        localStorage.setItem('password', newPassword);
+                        alert('Пароль успешно изменен!');
+                    } else {
+                        alert('Новые пароли не совпадают');
+                    }
+                } else {
+                    alert('Пожалуйста, заполните все поля');
+                }
+            } else {
+                alert('Текущий пароль введен неверно');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('authenticated');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+
+        if (localStorage.getItem('authenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>
