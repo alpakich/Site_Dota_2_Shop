@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razor</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content img {
+            width: 200px;
+            height: auto;
+        }
+
+        .product-info {
+            margin-top: 20px;
+        }
+
+        .btn-add-to-cart {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .notification {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Razor</h1>
+    </header>
+    <nav>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog.html">Каталог</a>
+        <a href="../corzina.html">Корзина</a>
+        <a href="../kabinet.html">Личный кабинет</a>
+        <a href="../contact.html">Контакты</a>
+    </nav>
+    <div class="content">
+        <img src="../pic/razor.jpg" alt="Razor">
+        <div class="product-info">
+            <h2>Razor</h2>
+            <p>Цена: 4000 руб.</p>
+            <p>Описание: Молниеносный герой с мощными атаками в Dota 2.</p>
+            <p>Количество: 5</p>
+            <button class="btn-add-to-cart" onclick="addToCart()">Добавить в корзину</button>
+            <div class="notification" id="notification">Товар успешно добавлен в корзину</div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = {
+                name: "Razor",
+                image: "../pic/razor.jpg",
+                price: 4000,
+                quantity: 1
+            };
+
+            // Проверяем, есть ли уже этот товар в корзине
+            const existingProduct = cart.find(item => item.name === product.name);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Показать уведомление
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
