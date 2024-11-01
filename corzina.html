@@ -137,7 +137,7 @@
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
                 cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
+                    <img src="pic/${item.image}" alt="${item.name}">
                     <h3>${item.name}</h3>
                     <p>Цена: ${item.price} руб.</p>
                     <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">

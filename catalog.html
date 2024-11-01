@@ -13,30 +13,30 @@
             margin: 0;
             padding: 0;
         }
-        
+
         header {
             background-color: #1F1F1F;
             padding: 20px;
             text-align: center;
         }
-        
+
         nav {
             margin: 20px;
             text-align: center;
         }
-        
+
         nav a {
             color: #FFFFFF;
             margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
         }
-        
+
         .search {
             text-align: center;
             margin: 20px;
         }
-        
+
         .search input {
             padding: 10px;
             font-size: 16px;
@@ -44,14 +44,14 @@
             border-radius: 5px;
             width: 50%;
         }
-        
+
         .catalog {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             margin: 20px;
         }
-        
+
         .item {
             background-color: #333;
             padding: 20px;
@@ -61,18 +61,27 @@
             width: 200px;
             position: relative;
         }
-        
+
         .item img {
             width: 100px;
             height: auto;
             display: block;
             margin: 0 auto 10px;
         }
-        
+
         .item h3 {
             margin: 10px 0;
         }
-        
+
+        .item h3 a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .item h3 a:hover {
+            color: #FF5733; /* Цвет при наведении */
+        }
+
         .item p {
             position: absolute;
             bottom: 10px;
@@ -103,68 +112,79 @@
     <script>
         const items = [{
             name: "Pudge",
-            image: "pudge.jpg",
+            image: "pic/pudge.jpg",
             price: "5000 руб.",
-            link: "pudge.html"
+            link: "hero/pudge.html"
         }, {
             name: "Sniper",
-            image: "sniper.jpg",
+            image: "pic/sniper.jpg",
             price: "3000 руб.",
-            link: "sniper.html"
+            link: "hero/sniper.html"
         }, {
             name: "Drow Ranger",
-            image: "drowranger.jpg",
+            image: "pic/drowranger.jpg",
             price: "4500 руб.",
-            link: "drow.html"
+            link: "hero/drow.html"
         }, {
             name: "Lina",
-            image: "lina.jpg",
+            image: "pic/lina.jpg",
             price: "3500 руб.",
-            link: "lina.html"
+            link: "hero/lina.html"
         }, {
             name: "Razor",
-            image: "razor.jpg",
+            image: "pic/razor.jpg",
             price: "4000 руб."
+            
         }, {
             name: "Invoker",
-            image: "invoker.jpg",
-            price: "6000 руб."
+            image: "pic/invoker.jpg",
+            price: "6000 руб.",
+            link: "hero/invoker.html"
         }, {
-            name: "kunka",
-            image: "kunka.jpg",
+            name: "Kunka",
+            image: "pic/kunka.jpg",
             price: "5500 руб."
+            
         }, {
             name: "Lion",
-            image: "lion.jpg",
+            image: "pic/lion.jpg",
             price: "4000 руб."
+            
         }, {
             name: "Sven",
-            image: "sven.jpg",
+            image: "pic/sven.jpg",
             price: "4500 руб."
+            
         }, {
             name: "Medusa",
-            image: "medusa.jpg",
+            image: "pic/medusa.jpg",
             price: "5000 руб."
+            
         }, {
             name: "Ursa",
-            image: "ursa.jpg",
+            image: "pic/ursa.jpg",
             price: "4800 руб."
+            
         }, {
             name: "Slark",
-            image: "slark.jpg",
+            image: "pic/slark.jpg",
             price: "4700 руб."
+            
         }, {
             name: "Alchemist",
-            image: "alchemist.jpg",
+            image: "pic/alchemist.jpg",
             price: "5100 руб."
+            
         }, {
             name: "Morphling",
-            image: "morf.jpg",
+            image: "pic/morf.jpg",
             price: "5200 руб."
+            
         }, {
             name: "Meepo",
-            image: "meppo.jpg",
+            image: "pic/meppo.jpg",
             price: "5300 руб."
+            
         }];
 
         const catalogList = document.getElementById('catalog-list');

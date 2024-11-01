@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper</title>
+    <title>Lina</title>
     <style>
         body {
             background-color: #121212;
@@ -13,39 +13,39 @@
             margin: 0;
             padding: 0;
         }
-        
+
         header {
             background-color: #1F1F1F;
             padding: 20px;
             text-align: center;
         }
-        
+
         nav {
             margin: 20px;
             text-align: center;
         }
-        
+
         nav a {
             color: #FFFFFF;
             margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
         }
-        
+
         .content {
             padding: 20px;
             text-align: center;
         }
-        
+
         .content img {
             width: 200px;
             height: auto;
         }
-        
+
         .product-info {
             margin-top: 20px;
         }
-        
+
         .btn-add-to-cart {
             background-color: #FF5733;
             color: #FFFFFF;
@@ -61,23 +61,23 @@
 
 <body>
     <header>
-        <h1>Sniper</h1>
+        <h1>Lina</h1>
     </header>
     <nav>
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="corzina.html">Корзина</a>
-        <a href="kabinet.html">Личный кабинет</a>
-        <a href="contact.html">Контакты</a>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog.html">Каталог</a>
+        <a href="../corzina.html">Корзина</a>
+        <a href="../kabinet.html">Личный кабинет</a>
+        <a href="../contact.html">Контакты</a>
     </nav>
     <div class="content">
-        <img src="sniper.jpg" alt="Sniper">
+        <img src="../pic/lina.jpg" alt="Lina">
         <div class="product-info">
-            <h2>Sniper</h2>
-            <p>Цена: 3000 руб.</p>
-            <p>Описание: Знаменитый герой Dota 2 с высокой дальностью атаки.</p>
+            <h2>Lina</h2>
+            <p>Цена: 3500 руб.</p>
+            <p>Описание: Мастер огненных заклинаний и мощных атак в Dota 2.</p>
             <p>Количество: 5</p>
-            <button class="btn-add-to-cart" onclick="addToCart('Sniper', 'sniper.jpg', 3000)">Добавить в корзину</button>
+            <button class="btn-add-to-cart" onclick="addToCart('Lina', 'lina.jpg', 3500)">Добавить в корзину</button>
         </div>
     </div>
 
@@ -97,7 +97,7 @@
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             localStorage.setItem('notification', 'added');
-            window.location.href = 'corzina.html';
+            window.location.href = '../corzina.html';
         }
     </script>
 </body>

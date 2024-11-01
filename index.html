@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин предметов Dota 2</title>
+    <title>Dota 2 Shop</title>
     <style>
         body {
             background-color: #121212;
@@ -13,36 +13,36 @@
             margin: 0;
             padding: 0;
         }
-        
+
         header,
         footer {
             background-color: #1F1F1F;
             padding: 20px;
             text-align: center;
         }
-        
+
         nav {
             margin: 20px;
             text-align: center;
         }
-        
+
         nav a {
             color: #FFFFFF;
             margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
         }
-        
+
         .banner {
             text-align: center;
         }
-        
+
         .banner img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        
+
         .info {
             background-color: #333;
             padding: 20px;
@@ -50,14 +50,14 @@
             border-radius: 5px;
             text-align: center;
         }
-        
+
         .products {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             margin: 20px;
         }
-        
+
         .product {
             background-color: #333;
             padding: 20px;
@@ -65,19 +65,41 @@
             text-align: center;
             border-radius: 5px;
         }
-        
+
         .product img {
             width: 100px;
             height: auto;
             display: block;
             margin: 0 auto 10px;
         }
+
+        .product h3 a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .product h3 a:hover {
+            color: #FF5733;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        footer p a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        footer p a:hover {
+            color: #FF5733; /* Цвет при наведении */
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Магазин предметов Dota 2</h1>
+        <h1>Dota 2 Shop</h1>
     </header>
     <nav>
         <a href="index.html">Главная</a>
@@ -87,7 +109,7 @@
         <a href="#">Контакты</a>
     </nav>
     <div class="banner">
-        <img src="banner.jpg" alt="Баннер">
+        <img src="pic/banner.jpg" alt="Баннер">
     </div>
     <div class="info">
         <h2>О нашем магазине</h2>
@@ -101,34 +123,34 @@
     </div>
     <section class="products">
         <div class="product">
-            <img src="pudge.jpg" alt="Pudge">
-            <h3>Pudge</h3>
+            <img src="pic/pudge.jpg" alt="Pudge">
+            <h3><a href="hero/pudge.html">Pudge</a></h3>
             <p>Цена: 5000 руб.</p>
         </div>
         <div class="product">
-            <img src="sniper.jpg" alt="Sniper">
-            <h3>Sniper</h3>
+            <img src="pic/sniper.jpg" alt="Sniper">
+            <h3><a href="hero/sniper.html">Sniper</a></h3>
             <p>Цена: 3000 руб.</p>
         </div>
         <div class="product">
-            <img src="drowranger.jpg" alt="Drow Ranger">
-            <h3>Drow Ranger</h3>
+            <img src="pic/drowranger.jpg" alt="Drow Ranger">
+            <h3><a href="hero/drow.html">Drow Ranger</a></h3>
             <p>Цена: 4500 руб.</p>
         </div>
         <div class="product">
-            <img src="lina.jpg" alt="Lina">
-            <h3>Lina</h3>
+            <img src="pic/lina.jpg" alt="Lina">
+            <h3><a href="hero/lina.html">Lina</a></h3>
             <p>Цена: 3500 руб.</p>
         </div>
         <div class="product">
-            <img src="razor.jpg" alt="Razor">
+            <img src="pic/razor.jpg" alt="Razor">
             <h3>Razor</h3>
             <p>Цена: 4000 руб.</p>
         </div>
     </section>
     <footer>
         <p>Контактная информация: <a href="mailto:rikocs@list.ru">rikocs@list.ru</a></p>
-        <p>Социальные сети</p>
+        <p>Социальные сети</п>
     </footer>
 </body>
 

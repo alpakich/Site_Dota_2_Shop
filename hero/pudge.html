@@ -13,39 +13,39 @@
             margin: 0;
             padding: 0;
         }
-        
+
         header {
             background-color: #1F1F1F;
             padding: 20px;
             text-align: center;
         }
-        
+
         nav {
             margin: 20px;
             text-align: center;
         }
-        
+
         nav a {
             color: #FFFFFF;
             margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
         }
-        
+
         .content {
             padding: 20px;
             text-align: center;
         }
-        
+
         .content img {
             width: 200px;
             height: auto;
         }
-        
+
         .product-info {
             margin-top: 20px;
         }
-        
+
         .btn-add-to-cart {
             background-color: #FF5733;
             color: #FFFFFF;
@@ -56,7 +56,7 @@
             border-radius: 5px;
             margin-top: 10px;
         }
-        
+
         .notification {
             background-color: #4CAF50;
             color: white;
@@ -72,14 +72,14 @@
         <h1>Pudge</h1>
     </header>
     <nav>
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="corzina.html">Корзина</a>
-        <a href="kabinet.html">Личный кабинет</a>
-        <a href="contact.html">Контакты</a>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog.html">Каталог</a>
+        <a href="../corzina.html">Корзина</a>
+        <a href="../kabinet.html">Личный кабинет</a>
+        <a href="../contact.html">Контакты</a>
     </nav>
     <div class="content">
-        <img src="pudge.jpg" alt="Pudge">
+        <img src="../pic/pudge.jpg" alt="Pudge">
         <div class="product-info">
             <h2>Pudge</h2>
             <p>Цена: 5000 руб.</p>
@@ -95,7 +95,7 @@
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const product = {
                 name: "Pudge",
-                image: "pudge.jpg",
+                image: "../pic/pudge.jpg",
                 price: 5000,
                 quantity: 1
             };
