@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 Shop</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FF5733;
+        }
+
+        .banner {
+            position: relative;
+            text-align: center;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .info {
+            background-color: #333;
+            padding: 40px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .info p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+            gap: 10px;
+        }
+
+        .product {
+            background-color: #333;
+            padding: 45px;
+            width: 240px;
+            height: 420px;
+            text-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 140px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .product h3 a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .product h3 a:hover {
+            color: #FF5733;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        .product p {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        footer p a {
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer p a:hover {
+            color: #FF5733;
+        }
+
+        footer {
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dota 2 Shop</h1>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="corzina.html">Корзина</a>
+        <a href="kabinet.html">Личный кабинет</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    <div class="banner">
+        <img src="pic/banner.jpg" alt="Баннер">
+    </div>
+    <div class="info">
+        <h2>О нашем магазине</h2>
+        <p>Добро пожаловать в наш интернет-магазин игровых предметов Dota 2! Мы предлагаем лучшие товары для вашей коллекции. Наши преимущества:</p>
+        <ul>
+            <li>Широкий ассортимент</li>
+            <li>Высокое качество</li>
+            <li>Быстрая доставка</li>
+            <li>Удобные способы оплаты</li>
+        </ul>
+    </div>
+    <section class="products">
+        <div class="product">
+            <img src="pic/pudge.jpg" alt="Pudge">
+            <h3><a href="hero/pudge.html">Pudge</a></h3>
+            <p>Цена: 5000 руб.</p>
+        </div>
+        <div class="product">
+            <img src="pic/sniper.jpg" alt="Sniper">
+            <h3><a href="hero/sniper.html">Sniper</a></h3>
+            <p>Цена: 3000 руб.</p>
+        </div>
+        <div class="product">
+            <img src="pic/drowranger.jpg" alt="Drow Ranger">
+            <h3><a href="hero/drow.html">Drow Ranger</a></h3>
+            <p>Цена: 4500 руб.</p>
+        </div>
+        <div class="product">
+            <img src="pic/lina.jpg" alt="Lina">
+            <h3><a href="hero/lina.html">Lina</a></h3>
+            <p>Цена: 3500 руб.</p>
+        </div>
+        <div class="product">
+            <img src="pic/razor.jpg" alt="Razor">
+            <h3>Razor</h3>
+            <p>Цена: 4000 руб.</p>
+        </div>
+    </section>
+    <footer>
+        <p>Контактная информация: <a href="mailto:rikocs@list.ru">rikocs@list.ru</a></p>
+        <p>Социальные сети</п>
+    </footer>
+</body>
+
+</html>
