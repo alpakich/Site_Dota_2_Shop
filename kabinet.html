@@ -65,6 +65,10 @@
             border-radius: 5px;
             width: 100%;
         }
+
+        .section button:hover {
+            background-color: #FF4500;
+        }
     </style>
 </head>
 
@@ -137,12 +141,12 @@
             const currentPassword = document.getElementById('current-password').value;
             const newPassword = document.getElementById('new-password').value;
             const confirmNewPassword = document.getElementById('confirm-new-password').value;
-            const storedPassword = localStorage.getItem('password');
+            const storedPassword = localStorage.getItem(`${currentUser}_password`);
 
             if (currentPassword === storedPassword) {
                 if (newPassword && confirmNewPassword) {
                     if (newPassword === confirmNewPassword) {
-                        localStorage.setItem('password', newPassword);
+                        localStorage.setItem(`${currentUser}_password`, newPassword);
                         alert('Пароль успешно изменен!');
                     } else {
                         alert('Новые пароли не совпадают');

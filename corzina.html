@@ -89,7 +89,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .notification {
             display: none;
             background-color: #28a745;
@@ -98,6 +98,35 @@
             margin: 20px 0;
             border-radius: 5px;
             text-align: center;
+        }
+        
+        .order-form {
+            display: none;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .order-form input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .order-form button {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
         }
         
         .suggestions {
@@ -190,7 +219,16 @@
     <div class="total" id="total">
         <p>Итого: 0 руб.</п>
     </div>
-    <button class="btn-checkout">Оформить заказ</button>
+    <button class="btn-checkout" onclick="showOrderForm()">Оформить заказ</button>
+
+    <div class="order-form" id="order-form">
+        <h2>Введите данные для заказа</h2>
+        <input type="text" id="card-number" placeholder="Номер карты">
+        <input type="text" id="expiry-date" placeholder="Срок действия (MM/YY)">
+        <input type="text" id="cvv" placeholder="CVV">
+        <input type="text" id="trade-link" placeholder="Трейд ссылка" readonly>
+        <button onclick="submitOrder()">Отправить заказ</button>
+    </div>
 
     <div class="suggestions" id="suggestions">
         <!-- Список продуктов будет добавлен через JavaScript -->
@@ -200,77 +238,77 @@
         const items = [{
             name: "Pudge",
             image: "pic/pudge.jpg",
-            price: "5000 руб.",
+            price: 5000,
             link: "hero/pudge.html"
         }, {
             name: "Sniper",
             image: "pic/sniper.jpg",
-            price: "3000 руб.",
+            price: 3000,
             link: "hero/sniper.html"
         }, {
             name: "Drow Ranger",
             image: "pic/drowranger.jpg",
-            price: "4500 руб.",
+            price: 4500,
             link: "hero/drow.html"
         }, {
             name: "Lina",
             image: "pic/lina.jpg",
-            price: "3500 руб.",
+            price: 3500,
             link: "hero/lina.html"
         }, {
             name: "Razor",
             image: "pic/razor.jpg",
-            price: "4000 руб.",
+            price: 4000,
             link: "hero/razor.html"
         }, {
             name: "Invoker",
             image: "pic/invoker.jpg",
-            price: "6000 руб.",
+            price: 6000,
             link: "hero/invoker.html"
         }, {
             name: "Kunka",
             image: "pic/kunka.jpg",
-            price: "5500 руб.",
+            price: 5500,
             link: "#"
         }, {
             name: "Lion",
             image: "pic/lion.jpg",
-            price: "4000 руб.",
+            price: 4000,
             link: "#"
         }, {
             name: "Sven",
             image: "pic/sven.jpg",
-            price: "4500 руб.",
+            price: 4500,
             link: "#"
         }, {
             name: "Medusa",
             image: "pic/medusa.jpg",
-            price: "5000 руб.",
+            price: 5000,
             link: "#"
         }, {
             name: "Ursa",
             image: "pic/ursa.jpg",
-            price: "4800 руб.",
+            price: 4800,
             link: "#"
         }, {
             name: "Slark",
             image: "pic/slark.jpg",
-            price: "4700 руб.",
+            price: 4700,
             link: "#"
         }, {
             name: "Alchemist",
             image: "pic/alchemist.jpg",
-            price: "5100 руб.",
+            price: 5100,
             link: "#"
         }, {
             name: "Morphling",
             image: "pic/morf.jpg",
-            price: "5200 руб.",
+            price: 5200,
             link: "#"
         }, {
             name: "Meepo",
             image: "pic/meppo.jpg",
-            price: "5300 руб.",
+            price: 5300,
             link: "#"
         }];
 
@@ -286,7 +324,7 @@
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
                 cartItem.innerHTML = `
-                    <img src="pic/${item.image}" alt="${item.name}">
+                    <img src="${item.image}" alt="${item.name}">
                     <h3>${item.name}</h3>
                     <p>Цена: ${item.price} руб.</p>
                     <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
@@ -310,32 +348,56 @@
             updateCart();
         }
 
-        updateCart();
-
-                // Получаем уведомление из localStorage
-                const notification = localStorage.getItem('notification');
-        if (notification) {
-            const notificationElement = document.getElementById('notification');
-            notificationElement.style.display = 'block';
-            setTimeout(() => {
-                notificationElement.style.display = 'none';
-                localStorage.removeItem('notification');
-            }, 3000);
+        function showOrderForm() {
+            const currentUser = localStorage.getItem('currentUser');
+            const tradeLink = localStorage.getItem(`${currentUser}_tradeLink`) || '';
+            document.getElementById('trade-link').value = tradeLink;
+            document.getElementById('order-form').style.display = 'block';
         }
 
-        // Добавляем продукты в блок "предложения"
-        const suggestionsContainer = document.getElementById('suggestions');
-        items.forEach(item => {
-            const productDiv = document.createElement('div');
-            productDiv.className = 'product';
-            productDiv.innerHTML = `
-                <a href="${item.link ? item.link : '#'}">
-                    <img src="${item.image}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>Цена: ${item.price}</p>
-                </a>
-            `;
-            suggestionsContainer.appendChild(productDiv);
+        function submitOrder() {
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+            const tradeLink = document.getElementById('trade-link').value;
+
+            if (cardNumber && expiryDate && cvv && tradeLink) {
+                alert('Ваш заказ был успешно оформлен!');
+                localStorage.removeItem('cart'); // Очистка корзины
+                window.location.href = 'index.html'; // Перенаправление на главную страницу
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCart();
+
+            // Получаем уведомление из localStorage
+            const notification = localStorage.getItem('notification');
+            if (notification) {
+                const notificationElement = document.getElementById('notification');
+                notificationElement.style.display = 'block';
+                setTimeout(() => {
+                    notificationElement.style.display = 'none';
+                    localStorage.removeItem('notification');
+                }, 3000);
+            }
+
+            // Добавляем продукты в блок "предложения"
+            const suggestionsContainer = document.getElementById('suggestions');
+            items.forEach(item => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <a href="${item.link ? item.link : '#'}">
+                        <img src="${item.image}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>Цена: ${item.price} руб.</p>
+                    </a>
+                `;
+                suggestionsContainer.appendChild(productDiv);
+            });
         });
     </script>
 </body>

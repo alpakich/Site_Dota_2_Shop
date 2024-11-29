@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Администратор</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .section {
+            background-color: #333;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+        }
+        
+        .section button {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .section button:hover {
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Администратор</h1>
+    </header>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="corzina.html">Корзина</a>
+        <a href="kabinet.html">Личный кабинет</a>
+        <a href="contact.html">Контакты</a>
+        <a href="#" onclick="logout()">Выйти</a>
+    </nav>
+    <div class="container">
+        <div class="section">
+            <h2>Управление пользователями</h2>
+            <ul id="user-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userList = document.getElementById('user-list');
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.endsWith('_username')) {
+                    const username = key.replace('_username', '');
+                    const userItem = document.createElement('li');
+                    userItem.textContent = username;
+                    const viewButton = document.createElement('button');
+                    viewButton.textContent = 'Просмотреть';
+                    viewButton.onclick = () => viewUser(username);
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Удалить';
+                    deleteButton.onclick = () => deleteUser(username);
+                    userItem.appendChild(viewButton);
+                    userItem.appendChild(deleteButton);
+                    userList.appendChild(userItem);
+                }
+            }
+        });
+
+        function viewUser(username) {
+            const profileName = localStorage.getItem(`${username}_profileName`) || 'не указано';
+            const tradeLink = localStorage.getItem(`${username}_tradeLink`) || 'не указано';
+            const orders = localStorage.getItem(`${username}_orders`) || 'нет заказов';
+            const cart = localStorage.getItem(`${username}_cart`) || 'пуста';
+            alert(`Логин: ${username}\nПрофиль: ${profileName}\nТрейд ссылка: ${tradeLink}\nИстория заказов: ${orders}\nКорзина: ${cart}`);
+        }
+
+        function deleteUser(username) {
+            if (confirm(`Вы уверены, что хотите удалить пользователя ${username}?`)) {
+                localStorage.removeItem(`${username}_username`);
+                localStorage.removeItem(`${username}_password`);
+                localStorage.removeItem(`${username}_profileName`);
+                localStorage.removeItem(`${username}_tradeLink`);
+                localStorage.removeItem(`${username}_orders`);
+                localStorage.removeItem(`${username}_cart`);
+                location.reload();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('authenticated');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+
+        if (localStorage.getItem('authenticated') !== 'true' || localStorage.getItem('currentUser') !== 'admin') {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -20,11 +20,17 @@
         
         .register-container {
             background-color: #333;
-            padding: 20px;
+            padding: 40px;
             border-radius: 5px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
         }
         
+        .register-container h2 {
+            margin-bottom: 20px;
+        }
+
         .register-container input {
             display: block;
             width: 100%;
@@ -32,6 +38,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         
         .register-container button {
@@ -42,6 +49,23 @@
             cursor: pointer;
             border-radius: 5px;
             width: 100%;
+            margin-top: 10px;
+        }
+
+        .register-container button:hover {
+            background-color: #FF4500;
+        }
+
+        .register-container a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px; /* Увеличенный отступ */
+            transition: color 0.3s ease;
+        }
+
+        .register-container a:hover {
+            color: #FF5733;
         }
     </style>
 </head>
@@ -49,10 +73,13 @@
 <body>
     <div class="register-container">
         <h2>Регистрация</h2>
-        <input type="text" id="reg-username" placeholder="Введите логин">
-        <input type="password" id="reg-password" placeholder="Введите пароль">
-        <input type="password" id="reg-confirm-password" placeholder="Повторите пароль">
-        <button onclick="register()">Зарегистрироваться</button>
+        <form>
+            <input type="text" id="reg-username" placeholder="Введите логин" required>
+            <input type="password" id="reg-password" placeholder="Введите пароль" required>
+            <input type="password" id="reg-confirm-password" placeholder="Повторите пароль" required>
+            <button type="submit" onclick="register()">Зарегистрироваться</button>
+        </form>
+        <a href="login.html">Уже есть аккаунт? Войти</a>
     </div>
 
     <script>
