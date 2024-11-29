@@ -99,6 +99,74 @@
             border-radius: 5px;
             text-align: center;
         }
+        
+        .suggestions {
+            margin: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+        }
+        
+        .suggestions .product {
+            display: inline-block;
+            background-color: #333;
+            padding: 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            text-align: center;
+            vertical-align: top;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 300px;
+            width: 250px;
+            position: relative;
+            box-sizing: border-box;
+        }
+        
+        .suggestions .product img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .suggestions .product h3, .suggestions .product p {
+            margin: 0;
+        }
+
+        .suggestions .product a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .suggestions .product:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .suggestions .product:hover h3 {
+            color: #FF5733;
+        }
+
+        .suggestions::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .suggestions::-webkit-scrollbar-thumb {
+            background-color: #FF5733;
+            border-radius: 5px;
+        }
+
+        .suggestions::-webkit-scrollbar-track {
+            background-color: #1F1F1F;
+        }
     </style>
 </head>
 
@@ -120,11 +188,92 @@
         <!-- Товары будут добавлены здесь через JavaScript -->
     </div>
     <div class="total" id="total">
-        <p>Итого: 0 руб.</p>
+        <p>Итого: 0 руб.</п>
     </div>
     <button class="btn-checkout">Оформить заказ</button>
 
+    <div class="suggestions" id="suggestions">
+        <!-- Список продуктов будет добавлен через JavaScript -->
+    </div>
+
     <script>
+        const items = [{
+            name: "Pudge",
+            image: "pic/pudge.jpg",
+            price: "5000 руб.",
+            link: "hero/pudge.html"
+        }, {
+            name: "Sniper",
+            image: "pic/sniper.jpg",
+            price: "3000 руб.",
+            link: "hero/sniper.html"
+        }, {
+            name: "Drow Ranger",
+            image: "pic/drowranger.jpg",
+            price: "4500 руб.",
+            link: "hero/drow.html"
+        }, {
+            name: "Lina",
+            image: "pic/lina.jpg",
+            price: "3500 руб.",
+            link: "hero/lina.html"
+        }, {
+            name: "Razor",
+            image: "pic/razor.jpg",
+            price: "4000 руб.",
+            link: "hero/razor.html"
+        }, {
+            name: "Invoker",
+            image: "pic/invoker.jpg",
+            price: "6000 руб.",
+            link: "hero/invoker.html"
+        }, {
+            name: "Kunka",
+            image: "pic/kunka.jpg",
+            price: "5500 руб.",
+            link: "#"
+        }, {
+            name: "Lion",
+            image: "pic/lion.jpg",
+            price: "4000 руб.",
+            link: "#"
+        }, {
+            name: "Sven",
+            image: "pic/sven.jpg",
+            price: "4500 руб.",
+            link: "#"
+        }, {
+            name: "Medusa",
+            image: "pic/medusa.jpg",
+            price: "5000 руб.",
+            link: "#"
+        }, {
+            name: "Ursa",
+            image: "pic/ursa.jpg",
+            price: "4800 руб.",
+            link: "#"
+        }, {
+            name: "Slark",
+            image: "pic/slark.jpg",
+            price: "4700 руб.",
+            link: "#"
+        }, {
+            name: "Alchemist",
+            image: "pic/alchemist.jpg",
+            price: "5100 руб.",
+            link: "#"
+        }, {
+            name: "Morphling",
+            image: "pic/morf.jpg",
+            price: "5200 руб.",
+            link: "#"
+        }, {
+            name: "Meepo",
+            image: "pic/meppo.jpg",
+            price: "5300 руб.",
+            link: "#"
+        }];
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateCart() {
@@ -147,7 +296,7 @@
                 total += item.price * item.quantity;
             });
 
-            totalElement.innerHTML = `<p>Итого: ${total} руб.</p>`;
+            totalElement.innerHTML = `<p>Итого: ${total} руб.</п>`;
             localStorage.setItem('cart', JSON.stringify(cart));
         }
 
@@ -163,8 +312,8 @@
 
         updateCart();
 
-        // Получаем уведомление из localStorage
-        const notification = localStorage.getItem('notification');
+                // Получаем уведомление из localStorage
+                const notification = localStorage.getItem('notification');
         if (notification) {
             const notificationElement = document.getElementById('notification');
             notificationElement.style.display = 'block';
@@ -173,6 +322,21 @@
                 localStorage.removeItem('notification');
             }, 3000);
         }
+
+        // Добавляем продукты в блок "предложения"
+        const suggestionsContainer = document.getElementById('suggestions');
+        items.forEach(item => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+            productDiv.innerHTML = `
+                <a href="${item.link ? item.link : '#'}">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>Цена: ${item.price}</p>
+                </a>
+            `;
+            suggestionsContainer.appendChild(productDiv);
+        });
     </script>
 </body>
 
