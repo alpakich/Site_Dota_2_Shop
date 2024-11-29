@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ursa</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1F1F1F;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content img {
+            width: 200px;
+            height: auto;
+        }
+
+        .product-info {
+            margin-top: 20px;
+        }
+
+        .btn-add-to-cart {
+            background-color: #FF5733;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Ursa</h1>
+    </header>
+    <nav>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog.html">Каталог</a>
+        <a href="../corzina.html">Корзина</a>
+        <a href="../kabinet.html">Личный кабинет</a>
+        <a href="../contact.html">Контакты</a>
+    </nav>
+    <div class="content">
+        <img src="../pic/ursa.jpg" alt="Ursa">
+        <div class="product-info">
+            <h2>Ursa</h2>
+            <p>Цена: 4800 руб.</p>
+            <p>Описание: Сильный герой Dota 2, специализирующийся на ближнем бою.</p>
+            <p>Количество: 5</p>
+            <button class="btn-add-to-cart" onclick="addToCart('Ursa', '../pic/ursa.jpg', 4800)">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(name, image, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += 1;
+            } else {
+                cart.push({
+                    name,
+                    image,
+                    price,
+                    quantity: 1
+                });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('notification', 'added');
+            window.location.href = '../corzina.html';
+        }
+    </script>
+</body>
+
+</html>
